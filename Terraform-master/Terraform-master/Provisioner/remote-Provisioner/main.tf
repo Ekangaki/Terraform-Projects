@@ -4,9 +4,9 @@ region = "us-east-1"
 
 
 resource "aws_instance" "web" {
-  ami           = "ami-04bf6dcdc9ab498ca"
+  ami           = "ami-0230bd60aa48260c6"
   instance_type = "t2.micro"
-  key_name      = "aws_iny_lappi"
+  key_name      = "Batch5-keypair"
   vpc_security_group_ids = ["${aws_security_group.webSG.id}"]
   tags = {
     Name = "remote-exec-provisioner"
@@ -20,7 +20,7 @@ resource "null_resource" "copy_execute" {
     type = "ssh"
     host = aws_instance.web.public_ip
     user = "ec2-user"
-    private_key = file("aws_iny_lappi.pem")
+    private_key = file("Batch5-keypair.pem")
     }
 
  
